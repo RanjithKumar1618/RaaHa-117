@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ramadan Special 🌙</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle, #0f2027, #203a43, #000);
+    color: white;
+    text-align: center;
+}
+
+/* Stars background */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+/* Card */
+.card {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(255,255,255,0.2);
+    animation: fadeIn 2s ease;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+.moon {
+    font-size: 70px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 40px gold; }
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: gold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: #111;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Stars -->
+<script>
+for (let i = 0; i < 100; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(star);
+}
+</script>
+
+<div class="card">
+    <div class="moon">🌙</div>
+    <h1>Ramadan Mubarak</h1>
+    <p>May your duas be accepted 🤲<br>Peace, blessings & happiness ✨</p>
+
+    <button onclick="showMessage()">Open Special Wish 🎁</button>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h2>✨ Special Message ✨</h2>
+        <p>Ranjith wishes you a beautiful Ramadan 🌙<br>
+        May Allah bless you with success & peace 🤲</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<!-- Music -->
+<audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function showMessage() {
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
