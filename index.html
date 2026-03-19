@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ramadan Special 🌙</title>
 
 <style>
@@ -32,7 +32,7 @@ body::after {
     pointer-events: none;
 }
 
-/* Stars background */
+/* Stars */
 .star {
     position: absolute;
     width: 2px;
@@ -52,37 +52,27 @@ body::after {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    padding: 40px;
+    padding: 20px;
+    width: 90%;
+    max-width: 350px;
+    margin: auto;
     border-radius: 20px;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 30px rgba(255,255,255,0.2);
-    animation: fadeIn 2s ease;
-
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
-h1 {
-    font-size: 42px;
-}
-
-.moon {
-    font-size: 70px;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px #fff; }
-    to { text-shadow: 0 0 40px gold; }
-}
+h1 { font-size: 28px; }
+p { font-size: 14px; }
 
 button {
-    margin-top: 20px;
-    padding: 10px 20px;
+    margin-top: 15px;
+    padding: 10px 18px;
     border: none;
     border-radius: 10px;
     background: gold;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Popup */
@@ -102,51 +92,49 @@ button {
     background: #111;
     padding: 30px;
     border-radius: 15px;
-    text-align: center;
 }
+
+/* Mosque */
 .mosque {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 160px;
+    height: 100px;
     background: url('https://pngimg.com/uploads/mosque/mosque_PNG28.png') no-repeat center bottom;
     background-size: contain;
     opacity: 0.5;
     transform: scale(1);
     transition: transform 0.5s ease;
 }
-.big-moon {
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, #fff, #ffd700);
-    border-radius: 50%;
-    filter: blur(20px);
-    opacity: 0.6;
-}
+
+/* Floating text */
 .floating-text {
     position: absolute;
-    font-size: 20px;
     opacity: 0;
+    max-width: 80%;
+    text-align: center;
     transform: translateY(20px);
     transition: opacity 1s ease, transform 3s linear;
     pointer-events: none;
 }
-@keyframes fadeIn {
-    from {opacity:0;}
-    to {opacity:1;}
+
+/* Mobile */
+@media (max-width: 600px) {
+    h1 { font-size: 24px; }
+    p { font-size: 13px; }
+    button { font-size: 13px; padding: 8px 15px; }
+    .floating-text { font-size: 14px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Stars -->
 <script>
-for (let i = 0; i < 150; i++) {
+// Stars (mobile optimized)
+let starCount = window.innerWidth < 600 ? 80 : 150;
+
+for (let i = 0; i < starCount; i++) {
     let star = document.createElement("div");
     star.className = "star";
     star.style.top = Math.random() * 100 + "vh";
@@ -158,66 +146,60 @@ for (let i = 0; i < 150; i++) {
 </script>
 
 <div class="card">
-   <div class="big-moon"></div>
-    <h1>Ramadan Mubarak</h1>
+    <h1>Ramadan Mubarak 🌙</h1>
     <p>May your duas be accepted 🤲<br>Peace, blessings & happiness ✨</p>
-    
     <button onclick="startExperience()">Open Special Wish 🎁</button>
 </div>
 
-<!-- Popup -->
 <div class="popup" id="popup">
     <div class="popup-content">
         <h2>✨ Special Message ✨</h2>
         <p>Ranjith wishes you a beautiful Ramadan 🌙<br>
-        May Allah bless you with success & peace 🤲</p>
+        May Allah bless you 🤲</p>
         <button onclick="closePopup()">Close</button>
     </div>
 </div>
 
-<!-- Music -->
+<div class="mosque" id="mosque"></div>
+
 <audio id="music" loop>
     <source src="RaaHa117.mp3" type="audio/mpeg">
 </audio>
-<script>
-document.body.addEventListener("click", function() {
-    let music = document.getElementById("music");
-    music.play().then(() => {
-        console.log("Music started");
-    }).catch((error) => {
-        console.log("Error playing:", error);
-    });
-}, { once: true });
-</script>
+
 <script>
 function startExperience() {
 
-    // 🎶 Play Music
     let music = document.getElementById("music");
     music.play();
 
+    // mobile vibration
+    if (navigator.vibrate) navigator.vibrate(100);
+
+    // mosque animation (run once)
+    if (!window.mosqueRunning) {
+        window.mosqueRunning = true;
+        let mosque = document.getElementById("mosque");
+
+        setInterval(() => {
+            mosque.style.transform = "scale(1.1)";
+            setTimeout(() => {
+                mosque.style.transform = "scale(1)";
+            }, 300);
+        }, 700);
+    }
+
     let messages = [
-        "To show mercy to every living creature created",
-        "Not to judge or not to be envious",
+        "To show mercy to every living creature",
+        "Not to judge or be envious",
         "Not to repay evil with evil",
         "To be grateful and rely on God",
-        "To be able to stand up to injustice",
-        "Not to Break hearts and not to incur anyone's curse",
-        "To Stand Strong against adversity and keep one's \"humanity\" ",
-        "To be able to forgive",
-        "To be able to stay pure-hearted no matter What"
-     
+        "To stand up to injustice",
+        "Not to break hearts",
+        "Stay strong & keep humanity",
+        "To forgive and stay pure-hearted",
+        "Ramadan Mubarak 🌙"
     ];
 
-  let mosque = document.getElementById("mosque");
-
-// Animate mosque repeatedly with music feel
-setInterval(() => {
-    mosque.style.transform = "scale(1.1)";
-    setTimeout(() => {
-        mosque.style.transform = "scale(1)";
-    }, 300);
-}, 600);
     let index = 0;
 
     function showMessage() {
@@ -229,35 +211,27 @@ setInterval(() => {
         let msg = document.createElement("div");
         msg.className = "floating-text";
         msg.innerText = messages[index];
-         
-      
 
-        // 🎯 Random position
-        msg.style.top = Math.random() * 80 + "vh";
-        msg.style.left = Math.random() * 80 + "vw";
+        msg.style.top = (10 + Math.random() * 70) + "vh";
+        msg.style.left = (10 + Math.random() * 70) + "vw";
 
-        msg.style.fontSize = (16 + Math.random() * 20) + "px"
-        msg.style.textShadow = "0 0 10px " + msg.style.color;
+        msg.style.fontSize = (16 + Math.random() * 20) + "px";
 
-        // 🎨 Random color
-        let colors = [ "#FFD700", "#00FFFF", "#FF69B4", "#ADFF2F", "#FFA500", "#FFFFFF", "#00FF7F", 
-         "#FF4500","#1E90FF", "#FF1493"];
-        msg.style.color = colors[Math.floor(Math.random() * colors.length)];
+        let colors = ["#FFD700","#00FFFF","#FF69B4","#ADFF2F","#FFA500","#FFFFFF","#00FF7F","#FF4500","#1E90FF","#FF1493"];
+        let color = colors[Math.floor(Math.random() * colors.length)];
+        msg.style.color = color;
+        msg.style.textShadow = "0 0 10px " + color;
 
         document.body.appendChild(msg);
 
-        // Fade in
         setTimeout(() => {
-    msg.style.opacity = 1;
-    msg.style.transform = "translateY(-50px)";
-}, 100);
+            msg.style.opacity = 1;
+            msg.style.transform = "translateY(-50px)";
+        }, 100);
 
-        // Fade out + remove
         setTimeout(() => {
             msg.style.opacity = 0;
-            setTimeout(() => {
-                msg.remove();
-            }, 1000);
+            setTimeout(() => msg.remove(), 1000);
         }, 3000);
 
         index++;
@@ -266,7 +240,11 @@ setInterval(() => {
 
     showMessage();
 }
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
 </script>
-<div class="mosque" id="mosque"></div>
+
 </body>
 </html>
