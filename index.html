@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ramadan Special 🌙</title>
+<title>RaaHa</title>
 
 <style>
 body {
@@ -10,185 +10,349 @@ body {
     height: 100vh;
     overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #00c9ff);
-    background-size: 400% 400%;
-    animation: gradientMove 10s ease infinite;
+    background: radial-gradient(circle at top, #020111, #000000 70%);
     color: white;
-    text-align: center;
-}
-
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-body::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent);
-    pointer-events: none;
 }
 
 /* Stars */
 .star {
     position: absolute;
-    width: 2px;
-    height: 2px;
     background: white;
-    box-shadow: 0 0 6px white;
-    animation: twinkle 2s infinite alternate;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: twinkle 4s infinite alternate;
 }
 
-@keyframes twinkle {
-    from { opacity: 0.3; }
-    to { opacity: 1; }
-}
-
-/* Card */
-.card {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 20px;
-    width: 90%;
-    max-width: 350px;
-    margin: auto;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(255,255,255,0.2);
-}
-
-h1 { font-size: 28px; }
-p { font-size: 14px; }
-
-button {
-    margin-top: 15px;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 10px;
-    background: gold;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-/* Popup */
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0,0,0,0.8);
-    justify-content: center;
-    align-items: center;
-}
-
-.popup-content {
-    background: #111;
-    padding: 30px;
-    border-radius: 15px;
-}
-
-/* Mosque */
+/* Mosque glow animation */
 .mosque {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 260px;
     background: url('https://pngimg.com/uploads/mosque/mosque_PNG28.png') no-repeat center bottom;
     background-size: contain;
-    opacity: 0.5;
-    transform: scale(1);
-    transition: transform 0.5s ease;
+    opacity: 0.9;
+    transition: transform 0.6s ease, filter 0.6s ease;
 }
 
-/* Floating text */
-.floating-text {
+/* Button */
+.start-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 25px;
+    background: gold;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Center text */
+.center-text {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    opacity: 0;
+    transition: 1.5s;
+}
+
+/* Eid + Dua */
+.final-container {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+
+.final-container h1 {
+    font-size: 40px;
+    margin: 0;
+    text-shadow: 0 0 25px gold;
+}
+
+.final-container p {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+/* Moon */
+.moon {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle at 30% 30%, #fff, #ffd700);
+    border-radius: 50%;
+    box-shadow: 0 0 25px #ffd700;
+    display: none;
+}
+
+.moon::after {
+    content: "";
+    position: absolute;
+    left: 28px;
+    width: 90px;
+    height: 90px;
+    background: #020111;
+    border-radius: 50%;
+}
+
+/* Floating messages */
+.floating-msg {
     position: absolute;
     opacity: 0;
+    font-size: 26px;
+    transition: all 5s linear;
     max-width: 80%;
     text-align: center;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 3s linear;
-    pointer-events: none;
 }
 
-/* Mobile */
-@media (max-width: 600px) {
-    h1 { font-size: 24px; }
-    p { font-size: 13px; }
-    button { font-size: 13px; padding: 8px 15px; }
-    .floating-text { font-size: 14px; }
+/* Fireworks */
+.firework-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+}
+
+/* Names container */
+.names-container {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.names-container span {
+    display: inline-block;
+    margin: 5px 10px;
+    font-size: 18px;
+    color: #FFD700;
+    text-shadow: 0 0 8px #FFD700;
+}
+
+/* Signature */
+.signature {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    font-size: 14px;
+    opacity: 0.8;
+    color: gold;
+}
+#typingText {
+    transition: none;
+}
+/* Typing effect */
+.typing-text {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    color: gold;
+    text-shadow: 0 0 25px gold;
+    letter-spacing: 2px;
+}
+
+.moon {
+    animation: moonGlow 3s infinite alternate;
+}
+
+@keyframes moonGlow {
+    from { box-shadow: 0 0 15px #ffd700; }
+    to { box-shadow: 0 0 40px #ffd700; }
+}
+/* Mobile fixes */
+@media (max-width:600px){
+    .floating-msg { font-size:18px; }
+    .final-container h1 { font-size:30px; }
+    .final-container p { font-size:16px; }
+    .moon { width:70px; height:70px; }
+    .names-container span { font-size:14px; }
+    .typing-text { font-size:22px; }
+}
+.prayer-line {
+    font-size: 22px;
+    color: gold;
+    text-shadow: 0 0 15px gold;
+    opacity: 0;
+    transition: opacity 1s ease;
+    margin-top: 20%;
+}
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
 }
 </style>
 </head>
 
 <body>
 
-<script>
-// Stars (mobile optimized)
-let starCount = window.innerWidth < 600 ? 80 : 150;
+<div id="prayerBox" style="
+    display:none;
+    position:absolute;
+    top:10%;
+    left:10%;
+    width:80%;
+    max-height:80vh;
+    overflow:auto;
+    background:rgba(0,0,0,0.85);
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    color:white;
+">
+</div>
 
-for (let i = 0; i < starCount; i++) {
-    let star = document.createElement("div");
-    star.className = "star";
-    star.style.top = Math.random() * 100 + "vh";
-    star.style.left = Math.random() * 100 + "vw";
-    star.style.opacity = Math.random();
-    star.style.transform = "scale(" + Math.random() + ")";
-    document.body.appendChild(star);
+<audio id="duaMusic" loop>
+    <source src="dua.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Stars
+for (let i = 0; i < 120; i++) {
+    let s = document.createElement("div");
+    s.className = "star";
+    s.style.top = Math.random()*100 + "vh";
+    s.style.left = Math.random()*100 + "vw";
+    let size = Math.random()*2;
+    s.style.width = size+"px";
+    s.style.height = size+"px";
+    document.body.appendChild(s);
 }
 </script>
 
-<div class="card">
-    <h1>Ramadan Mubarak 🌙</h1>
-    <p>May your duas be accepted 🤲<br>Peace, blessings & happiness ✨</p>
-    <button onclick="startExperience()">Open Special Wish 🎁</button>
+<button class="start-btn" onclick="start()">✨ RaaHa ✨</button>
+<div id="text" class="center-text"></div>
+
+<div class="final-container" id="finalBox">
+    <h1>Eid Ka Chand Mubarak 🌙</h1>
+    <p>Dua hai, aapka har din Eid jaisa ho.</p>
 </div>
 
-<div class="popup" id="popup">
-    <div class="popup-content">
-        <h2>✨ Special Message ✨</h2>
-        <p>Ranjith wishes you a beautiful Ramadan 🌙<br>
-        May Allah bless you 🤲</p>
-        <button onclick="closePopup()">Close</button>
-    </div>
-</div>
-
+<div class="moon" id="moon"></div>
 <div class="mosque" id="mosque"></div>
+<div id="typingText" class="typing-text"></div>
+<div class="names-container" id="namesContainer"></div>
+<div class="signature">@RanjithSijala</div>
 
-<audio id="music" loop>
+<audio id="bgMusic" loop>
     <source src="RaaHa117.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function startExperience() {
+let messages = [
+"Assalamualaikum",
+"Aapko aur aapki family ko",
+"Meri taraf se!!"
+];
 
-    let music = document.getElementById("music");
-    music.play();
+let index = 0;
+let fireInterval;
 
-    // mobile vibration
-    if (navigator.vibrate) navigator.vibrate(100);
+// Step 1: Start
+function start() {
+    document.querySelector(".start-btn").style.display = "none";
+    showNext();
+}
 
-    // mosque animation (run once)
-    if (!window.mosqueRunning) {
-        window.mosqueRunning = true;
-        let mosque = document.getElementById("mosque");
+/*function start() {
+    document.querySelector(".start-btn").style.display = "none";
 
-        setInterval(() => {
-            mosque.style.transform = "scale(1.1)";
-            setTimeout(() => {
-                mosque.style.transform = "scale(1)";
-            }, 300);
-        }, 700);
+    // 🔊 Ensure audio plays after user interaction
+    let music = document.getElementById("bgMusic");
+    music.play().catch(() => {});
+
+    showNext();
+} */
+function showNext() {
+    let text = document.getElementById("text");
+    if (index < messages.length) {
+        text.innerText = messages[index];
+        text.style.opacity = 1;
+        setTimeout(() => {
+            text.style.opacity = 0;
+            index++;
+            setTimeout(showNext, 1200);
+        }, 3000);
+    } else {
+        // Eid + moon
+        let finalBox = document.getElementById("finalBox");
+        finalBox.style.display = "block";
+        document.getElementById("moon").style.display = "block";
+
+        startFireworks();
+
+        setTimeout(() => {
+            clearInterval(fireInterval);
+            document.getElementById("bgMusic").play();
+            setTimeout(startFloatingMsgs, 2000);
+        }, 3000);
     }
+}
 
-    let messages = [
+/* Fireworks */
+function createFirework(x, y) {
+    let colors = ["#FFD700","#FF4500","#00FFFF","#FF69B4","#ADFF2F"];
+    for (let i = 0; i < 25; i++) {
+        let p = document.createElement("div");
+        p.className = "firework-particle";
+        p.style.background = colors[Math.floor(Math.random()*colors.length)];
+        document.body.appendChild(p);
+
+        let angle = Math.random()*2*Math.PI;
+        let speed = Math.random()*3+1;
+        let vx = Math.cos(angle)*speed;
+        let vy = Math.sin(angle)*speed;
+        let xPos = x, yPos = y;
+
+        function anim() {
+            xPos += vx;
+            yPos += vy;
+            vy += 0.04;
+            p.style.left = xPos+"px";
+            p.style.top = yPos+"px";
+            p.style.opacity -= 0.02;
+            if (p.style.opacity <= 0) p.remove();
+            else requestAnimationFrame(anim);
+        }
+         
+        p.style.opacity = 1;
+        anim();
+    }
+}
+
+function startFireworks() {
+    fireInterval = setInterval(()=>{
+        createFirework(
+            Math.random()*window.innerWidth,
+            Math.random()*window.innerHeight*0.5
+        );
+    },900);
+}
+
+/* Floating messages */
+function startFloatingMsgs() {
+    let mosque = document.getElementById("mosque");
+    setInterval(()=>{
+        mosque.style.transform="scale(1.03)";
+        mosque.style.filter="brightness(1.2)";
+        setTimeout(()=>{
+            mosque.style.transform="scale(1)";
+            mosque.style.filter="brightness(1)";
+        },400);
+    },1200);
+
+    let msgs = [
         "To show mercy to every living creature",
         "Not to judge or be envious",
         "Not to repay evil with evil",
@@ -197,52 +361,377 @@ function startExperience() {
         "Not to break hearts",
         "Stay strong & keep humanity",
         "To forgive and stay pure-hearted",
-        "Ramadan Mubarak 🌙"
     ];
 
-    let index = 0;
+    let i = 0;
+    function floatUp() {
+        if(i >= msgs.length) {
+            document.getElementById("finalBox").style.display = "none";
+            setTimeout(showRamadanThenDear, 1000);
+            return;
+        }
+        let m = document.createElement("div");
+        m.className = "floating-msg";
+        m.innerText = msgs[i];
 
-    function showMessage() {
-        if (index >= messages.length) {
-            document.getElementById("popup").style.display = "flex";
+        let startX = Math.random()*80 + 10;
+        let startY = 90;
+        let endY = Math.random()*40 + 10;
+
+        let colors=["#FFD700","#00FFFF","#FF69B4","#ADFF2F","#FFA500","#FFFFFF"];
+        let c = colors[Math.floor(Math.random()*colors.length)];
+
+        m.style.left = startX + "vw";
+        m.style.top = startY + "vh";
+        m.style.color = c;
+        m.style.textShadow = "0 0 10px " + c;
+
+        document.body.appendChild(m);
+
+        setTimeout(()=>{
+            m.style.opacity = 1;
+            m.style.top = endY + "vh";
+        },100);
+
+        setTimeout(()=>{
+            m.style.opacity = 0;
+            setTimeout(()=>m.remove(),1000);
+        },5000);
+
+        i++;
+        setTimeout(floatUp,2200);
+    }
+    floatUp();
+}
+
+// Step 2: Ramadan Mubarak → disappears → To my dear → disappears
+function showRamadanThenDear() {
+    let el = document.getElementById("typingText");
+    el.innerText = "Ramadan Mubarak 🌙";
+    el.style.opacity = 1;
+    setTimeout(()=>{
+        el.style.opacity = 0;
+        setTimeout(()=>{
+            el.innerText = "To my dear";
+            el.style.opacity = 1;
+            setTimeout(()=>{
+                el.style.opacity = 0;
+                setTimeout(showNames,1000);
+            },3000);
+        },500);
+    },5000);
+}
+
+// Step 3: Names
+let nameScripts=[
+"حبِيبَة","חֲבִיבָה","Хабиба","Χαμπίμπα","哈比巴","ハビーバ","하비바","ฮาบีบา","ჰაბიბა","Հաբիբա","ሀቢባ","हबीबा","হবিবা","ಹಬೀಬಾ","ஹபீபா","ഹബീബാ","টবিবা","ٹبیبا","حبِيبا","𐌀𐌁𐌁𐌄𐌁𐌀","𐍄𐌰𐌱𐌱𐌄𐌁","𑀳𑀪𑀺𑀪𑀸","𐑖𐑩𐑛𐑘𐑧","𐤇𐤁𐤉𐤁𐤀","𐎫𐎠𐎡𐎢𐎧","𐊗𐊀𐊁𐊁𐊀","𑑂𑑈𑑂𑑈","𐎒𐎁𐎁𐎎",
+"𐌇𐌀𐌁𐌁𐌀","𒄷𒁉𒁉𒀀","𓉔𓃀𓇋𓃀𓄿","𐎛𐎁𐎂𐎁𐎄","𐡇𐡁𐡉𐡁𐡀","𐌀𐌁𐌁𐌄𐌁","टबिबा","حبيبة","حَبِيبَة","ٹبیبہ","ہبیبہ","ہبیبا","حبیبہ","حبیبا","ਹਬੀਬਾ","હબીબા","హబీబా","ହବୀବା","𓇋𓃀𓉔𓃀𓄿","Habeeba","حبِيبة","Ҳабиба","哈比吧","ハビバ","ฮาบิบา","ᚺᚨᛒᛖᛖᛒᚨ","Ⱨ₳฿ɆɆ฿₳","HΔBΣΣBΔ"
+
+];
+
+function showNames(){
+    let center = document.getElementById("typingText");
+    let i = 0;
+
+    function showFast(){
+        if(i >= nameScripts.length){
+            center.innerText="";
+            createHeartThenRotate();
             return;
         }
 
-        let msg = document.createElement("div");
-        msg.className = "floating-text";
-        msg.innerText = messages[index];
+        center.innerText = nameScripts[i];
+        center.style.opacity = 1;
 
-        msg.style.top = (10 + Math.random() * 70) + "vh";
-        msg.style.left = (10 + Math.random() * 70) + "vw";
-
-        msg.style.fontSize = (16 + Math.random() * 20) + "px";
-
-        let colors = ["#FFD700","#00FFFF","#FF69B4","#ADFF2F","#FFA500","#FFFFFF","#00FF7F","#FF4500","#1E90FF","#FF1493"];
-        let color = colors[Math.floor(Math.random() * colors.length)];
-        msg.style.color = color;
-        msg.style.textShadow = "0 0 10px " + color;
-
-        document.body.appendChild(msg);
-
-        setTimeout(() => {
-            msg.style.opacity = 1;
-            msg.style.transform = "translateY(-50px)";
-        }, 100);
-
-        setTimeout(() => {
-            msg.style.opacity = 0;
-            setTimeout(() => msg.remove(), 1000);
-        }, 3000);
-
-        index++;
-        setTimeout(showMessage, 1500);
+        setTimeout(()=>{
+            center.style.opacity = 0;
+            i++;
+            setTimeout(showFast, 80); // ⚡ fast
+        }, 400);
     }
 
-    showMessage();
+   function createHeartThenRotate(){
+    let elements = [];
+
+    let cx = window.innerWidth / 2;
+    let cy = window.innerHeight / 2;
+
+   // let scale = 15; // 🔥 control heart size
+   let scale = window.innerWidth < 600 ? 7 : 15;
+    // ❤️ PERFECT HEART SHAPE
+    nameScripts.forEach((name,i)=>{
+        let span = document.createElement("span");
+        span.innerText = name;
+
+        span.style.position = "absolute";
+        span.style.fontSize = "14px";
+        span.style.color = "#FFD700";
+        span.style.textShadow = "0 0 8px gold";
+
+        let t = (i / nameScripts.length) * 2 * Math.PI;
+
+        // ❤️ Clean heart equation
+        let x = 16 * Math.pow(Math.sin(t), 3);
+        let y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+
+        // invert y (screen coords)
+        y = -y;
+
+        span.dataset.baseX = x;
+        span.dataset.baseY = y;
+
+        span.style.left = (cx + x * scale) + "px";
+        span.style.top  = (cy + y * scale) + "px";
+
+        document.body.appendChild(span);
+        elements.push(span);
+    });
+
+    // ✨ Center Ramadan text
+    let final = document.createElement("div");
+    final.innerText = "Ramadan Mubarak 🌙";
+
+    final.style.position="absolute";
+    final.style.top="50%";
+    final.style.left="50%";
+    final.style.transform="translate(-50%, -50%)";
+    final.style.fontSize="36px";
+    final.style.color="gold";
+    final.style.textShadow="0 0 25px gold";
+    final.style.opacity=0;
+    final.style.transition="1s";
+
+    document.body.appendChild(final);
+
+    setTimeout(()=> final.style.opacity=1,300);
+
+   let angle = 0;
+let rotations = 0;
+
+function rotate(){
+    angle += 0.02;
+
+    // count full rotation (2π ≈ 6.28)
+    if(angle >= 6.28){
+        angle = 0;
+        rotations++;
+
+        if(rotations >= 3){
+            endHeartSequence(elements, final);
+            return;
+        }
+    }
+
+    elements.forEach(el=>{
+        let x = parseFloat(el.dataset.baseX);
+        let y = parseFloat(el.dataset.baseY);
+
+        let rx = x * Math.cos(angle) - y * Math.sin(angle);
+        let ry = x * Math.sin(angle) + y * Math.cos(angle);
+
+        el.style.left = (cx + rx * scale) + "px";
+        el.style.top  = (cy + ry * scale) + "px";
+    });
+
+    requestAnimationFrame(rotate);
 }
 
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
+    
+
+    // ⏱ start rotation after slight delay
+    setTimeout(rotate, 1500);
+}
+
+    showFast();
+}
+
+function endHeartSequence(elements, final){
+    // ❤️ remove heart elements
+    elements.forEach(el => el.remove());
+
+    // remove center text
+    final.remove();
+
+    // 🌙 hide visuals
+    document.getElementById("moon").style.display = "none";
+    document.getElementById("mosque").style.display = "none";
+
+    // 🔊 STOP BGM here (after 3 rotations)
+    let bg = document.getElementById("bgMusic");
+    bg.pause();
+    bg.currentTime = 0;
+
+    // 🔘 show prayer button
+    let btn = document.createElement("button");
+    btn.innerText = "🤲 Open Prayer";
+    btn.className = "start-btn";
+    btn.style.top = "50%";
+    btn.style.left = "50%";
+
+    btn.onclick = function(){
+        this.remove();
+        showPrayer();
+    };
+
+    document.body.appendChild(btn);
+}
+function showPrayer(){
+    // remove button
+    document.querySelector(".start-btn").remove();
+
+    // ❌ stop background music
+    let bg = document.getElementById("bgMusic");
+    bg.pause();
+    bg.currentTime = 0;
+
+    let box = document.getElementById("prayerBox");
+    box.style.display = "block";
+
+    // 🔊 play ONLY dua music
+    let dua = document.getElementById("duaMusic");
+    dua.currentTime = 0;
+    dua.play().catch(()=>{});
+
+    startPrayerAnimation();
+}
+
+function startPrayerAnimation(){
+    let box = document.getElementById("prayerBox");
+
+    let lines = [
+        "✨ A Prayer ✨",
+        "For Habeeba 🌙",
+
+        "Bismillah-ir-Rahman-ir-Raheem",
+
+        "Ya Allah,",
+        "In this blessed month of Ramadan,",
+        "I thank You for bringing certain people into our lives",
+        "who become quietly special to our hearts.",
+
+        "Ya Allah,",
+        "Grant her peace in her heart,",
+        "ease in her hardships,",
+        "and barakah in everything she strives for.",
+
+        "Protect her always, guide her on the best path,",
+        "and keep her surrounded with happiness and goodness.",
+
+        "Ya Allah,",
+        "If I have ever hurt her knowingly or unknowingly,",
+        "please forgive me and replace that with peace in her heart.",
+
+        "And if it is written in our destiny,",
+        "let things unfold in the most beautiful way…",
+        "and if not, grant us both the strength and peace to accept Your will.",
+
+        "Ameen 🤲"
+    ];
+
+    let i = 0;
+
+    function showLine(){
+       if(i >= lines.length){
+    box.innerHTML = "";
+
+    // ✍️ show pen writing message
+    showFinalMessage();
+
+    // 🔊 stop dua after message
+    setTimeout(()=>{
+        let dua = document.getElementById("duaMusic");
+        dua.pause();
+        dua.currentTime = 0;
+    }, 5000);
+
+    return;
+}
+
+        box.innerHTML = `<div class="prayer-line">${lines[i]}</div>`;
+
+        let el = box.firstChild;
+
+        // fade in
+        setTimeout(()=> el.style.opacity = 1, 100);
+
+        // fade out
+        setTimeout(()=>{
+            el.style.opacity = 0;
+        }, 2000);
+
+        i++;
+
+        // ⏱ timing control (adjust to match 59 sec)
+        setTimeout(showLine, 2500);
+    }
+
+    showLine();
+}
+
+
+function showFinalMessage(){
+    let box = document.getElementById("prayerBox");
+    box.innerHTML = ""; // clear previous content
+
+    let text = `One Last Time Tabbu
+
+past lo cheppanu,present lo chepthunnanu
+Nuv naaku parichayam avvadam ,friend anukovadam I am so blessed,
+Future lo kuda ide feeling untundi.
+Always thankful… to you, and to Allah 🤲  
+
+If at any point my words or actions  
+didn’t feel right to you,  
+I sincerely respect your space and your feelings.
+
+Forever
+RaaHa 🤍`;
+
+    let el = document.createElement("div");
+    el.id = "finalMsg";
+    el.style.fontFamily = "'Segoe Script', cursive, sans-serif";
+    el.style.color = "gold";
+    el.style.textShadow = "0 0 15px gold";
+    el.style.whiteSpace = "pre-wrap";
+    el.style.lineHeight = "1.5";
+    el.style.maxHeight = "90vh";      // fits screen
+    el.style.overflow = "hidden";     // hide scroll
+    el.style.fontSize = "22px";       // initial font size
+    el.style.width = "90%";
+    el.style.maxWidth = "700px";
+    box.appendChild(el);
+
+    let cursor = document.createElement("span");
+    cursor.innerText = "|";
+    cursor.style.color = "gold";
+    cursor.style.textShadow = "0 0 15px gold";
+    el.appendChild(cursor);
+
+    // blinking cursor
+    setInterval(()=>{
+        cursor.style.visibility = cursor.style.visibility === "hidden" ? "visible" : "hidden";
+    },500);
+
+    // Human typing effect with font reduction if overflowing
+    let i = 0;
+    function type(){
+        if(i < text.length){
+            let char = text.charAt(i);
+            cursor.insertAdjacentHTML('beforebegin', (char === "\n") ? "<br>" : char);
+            i++;
+
+            // reduce font if content too tall
+            if(el.scrollHeight > box.clientHeight){
+                let fs = parseFloat(el.style.fontSize);
+                if(fs > 14) el.style.fontSize = (fs - 0.2) + "px";
+            }
+
+            let speed = Math.random() * 80 + 30; // human speed
+            setTimeout(type, speed);
+        } else cursor.style.visibility = "hidden";
+    }
+
+    type();
 }
 </script>
 
